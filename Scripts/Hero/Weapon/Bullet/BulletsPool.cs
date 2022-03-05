@@ -8,24 +8,26 @@ public class BulletsPool : MonoBehaviour
     [SerializeField] private Hero _survivor;
     [SerializeField] private int _poolCapacity;
 
-    private int _iterationCount;
+    private int _shootCount;
     private List<Bullet> _bulletsList;
     private Bullet _tempBullet;
     private Coroutine _coroutine;
+    private Shoper _shoper;
 
     private void OnEnable()
     {
-        _survivor.ChangedBulletsType += ChangeBulletsParameters;
+        _shoper = _survivor.GetComponent<Shoper>();
+        _shoper.ChangedBulletsType += ChangeBulletsParameters;
     }
 
     private void OnDisable()
     {
-        _survivor.ChangedBulletsType -= ChangeBulletsParameters;
+        _shoper.ChangedBulletsType -= ChangeBulletsParameters;
     }
 
     private void Start()
     {
-        _iterationCount = 1;
+        _shootCount = 1;
         _tempBullet = GetComponent<Bullet>();
         _bulletsList = new List<Bullet>();
         InitializePool(_survivor.Bullet);
@@ -36,9 +38,9 @@ public class BulletsPool : MonoBehaviour
         _coroutine = StartCoroutine(ShootBullet(rotation, spawnPosition));
     }
 
-    public void IncreaseIterationsCount()
+    public void IncreaseShootCount()
     {
-        _iterationCount++;
+        _shootCount++;
     }
 
     private void InitializePool(Bullet bullet)
@@ -53,10 +55,15 @@ public class BulletsPool : MonoBehaviour
 
     private void ChangeBulletsParameters(float multiplier)
     {
+        BulletSpriteSwitcher bulletSpriteSwitcher;
+        BulletDamageSwitcher bulletDamageSwitcher;
+
         foreach (var bullet in _bulletsList)
         {
-            bullet.IncreaseDamage(multiplier);
-            bullet.ChangeSprite();
+            bulletSpriteSwitcher = bullet.GetComponent<BulletSpriteSwitcher>();
+            bulletDamageSwitcher = bullet.GetComponent<BulletDamageSwitcher>();
+            bulletDamageSwitcher.IncreaseDamage(multiplier);
+            bulletSpriteSwitcher.ChangeSprite();
         }
     }
 
@@ -69,10 +76,10 @@ public class BulletsPool : MonoBehaviour
     {
         WaitForSeconds timer = new WaitForSeconds(0.1f);
 
-        for (int i = 0; i < _iterationCount; i++)
+        for (int i = 0; i < _shootCount; i++)
         {
             Bullet bullet = _bulletsList.First(p => p.gameObject.activeSelf == false);
-            bullet.ActivatedBullet(rotation, spawnPosition);
+            bullet.Activate(rotation, spawnPosition);
             yield return timer;
         }
 

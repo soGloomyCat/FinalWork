@@ -36,7 +36,7 @@ public class Zombie : MonoBehaviour
         {
             _animator.SetTrigger("Die");
             _deadFog.Play();
-            Invoke("Hide", 0.4f);
+            Invoke("Hide", 0.3f);
             Dying?.Invoke(this);
         }
     }

@@ -9,15 +9,15 @@ public class Ray : MonoBehaviour
     private void Start()
     {
         ChangeScale();
-        HideRay();
+        Hide();
     }
 
-    public void ShowRay()
+    public void Show()
     {
         gameObject.SetActive(true);
     }
 
-    public void HideRay()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }

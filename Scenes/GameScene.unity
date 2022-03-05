@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 38772591}
   - component: {fileID: 38772604}
   - component: {fileID: 38772603}
+  - component: {fileID: 38772605}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -526,10 +527,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
-  _survivor: {fileID: 1979205004}
   _healthBar: {fileID: 755930583}
   _shieldBar: {fileID: 1992533047}
-  _shieldButton: {fileID: 1800161129}
 --- !u!199 &38772603
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5302,6 +5301,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &38772605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38772589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47cd031501f53944e8cbe3b3615f1ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _survivor: {fileID: 1979205007}
+  _shieldButton: {fileID: 1800161129}
 --- !u!1 &43683787
 GameObject:
   m_ObjectHideFlags: 0
@@ -6410,7 +6423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &294942597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6528,7 +6541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.94915277, y: 0.91528356}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.900024, y: 19}
+  m_AnchoredPosition: {x: 22.900024, y: 18.99997}
   m_SizeDelta: {x: 39.8, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &336407895
@@ -6869,7 +6882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.94127065, y: 0.86700004}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.700134, y: 9.999939}
+  m_AnchoredPosition: {x: 23.700195, y: 9.999939}
   m_SizeDelta: {x: 37.82, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428536266
@@ -9812,7 +9825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.013112326, y: 0.33362436}
   m_AnchorMax: {x: 1, y: 0.88900006}
-  m_AnchoredPosition: {x: -10.000122, y: -15.5}
+  m_AnchoredPosition: {x: -10.000061, y: -15.5}
   m_SizeDelta: {x: -111.7, y: -317.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238906114
@@ -9872,7 +9885,7 @@ MonoBehaviour:
   - {fileID: 7070772249349164404, guid: 813e3be3b49da1b4a8b258e6b749dbe2, type: 3}
   - {fileID: 2559961249270039721, guid: 7eb39cc5787fe3f4fbcf98a437bca0e1, type: 3}
   - {fileID: 4896363725414807307, guid: 0ef97f61f293aa54c9495fc46d660d0a, type: 3}
-  _buyer: {fileID: 1979205004}
+  _buyer: {fileID: 1979205007}
   _itemPattern: {fileID: 8559552651222868906, guid: fe097330da9f796488a8657dab50b708, type: 3}
   _itemsContainer: {fileID: 460785008}
 --- !u!1 &1272249435
@@ -10796,7 +10809,7 @@ MonoBehaviour:
   _rightmostPosition: 2
   _pool: {fileID: 1484968264}
   _target: {fileID: 38772602}
-  _survivor: {fileID: 1979205004}
+  _survivor: {fileID: 1979205007}
   _currentLabelWave: {fileID: 541083624}
   _currentWaveText: {fileID: 2011463401}
   _finishedWavesText: {fileID: 80400469}
@@ -12202,7 +12215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62280a2147f4e84cb9c32470cf5987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buyer: {fileID: 1979205004}
+  _buyer: {fileID: 1979205007}
   _balance: {fileID: 574981700}
 --- !u!114 &1972701677
 MonoBehaviour:
@@ -12336,6 +12349,9 @@ GameObject:
   - component: {fileID: 1979205002}
   - component: {fileID: 1979205004}
   - component: {fileID: 1979205005}
+  - component: {fileID: 1979205006}
+  - component: {fileID: 1979205008}
+  - component: {fileID: 1979205007}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -12422,16 +12438,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf69edbf9a180d44a1d424cb669b6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootPoint: {fileID: 366305996}
   _bulletsPool: {fileID: 643665006}
+  _shootPoint: {fileID: 366305996}
   _bullet: {fileID: -2663100165508490934, guid: c854fe668417f1740afef549b895d56f, type: 3}
   _ray: {fileID: 1919480897}
-  _leftTurret: {fileID: 1984852206}
-  _rightTurret: {fileID: 294942597}
   _cooldown: 0.8
-  _killedZombiesText: {fileID: 11125958}
-  _currentBalanceText: {fileID: 871649922}
-  _killedZombiesResultText: {fileID: 534367934}
   _shootSound: {fileID: 1979205005}
 --- !u!82 &1979205005
 AudioSource:
@@ -12529,6 +12540,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1979205006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979205001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76603d7fb7d275d4f9f5ca3042d74bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1979205007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979205001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434b0dd91bcbc3e46a8249077cd70539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletsPool: {fileID: 643665006}
+  _leftTurret: {fileID: 1984852206}
+  _rightTurret: {fileID: 294942597}
+--- !u!114 &1979205008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979205001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11bdf449b18de9439ba0f54c060b353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _killedZombiesText: {fileID: 11125958}
+  _currentBalanceText: {fileID: 871649922}
+  _killedZombiesResultText: {fileID: 534367934}
 --- !u!1 &1984852205
 GameObject:
   m_ObjectHideFlags: 0
@@ -12546,7 +12599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1984852206
 MonoBehaviour:
   m_ObjectHideFlags: 0

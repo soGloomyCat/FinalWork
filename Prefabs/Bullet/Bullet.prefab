@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 5104187620746664137}
   - component: {fileID: -2663100165508490934}
   - component: {fileID: 1891843075670865675}
+  - component: {fileID: -7737035600490835999}
+  - component: {fileID: -365591531784958903}
+  - component: {fileID: -669498295802289170}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -123,11 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5fcef6aa36d6547a0232ac360a3ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _damage: 3
-  _bulletSprites:
-  - {fileID: 21300000, guid: 913d3cec7d52c404a95560d2c289bce2, type: 3}
-  - {fileID: 21300000, guid: 09a0f0e8179e8f74db8403c25cdce37b, type: 3}
 --- !u!50 &1891843075670865675
 Rigidbody2D:
   serializedVersion: 4
@@ -149,3 +147,44 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7737035600490835999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666682316461908863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f96d9124260134f975d63951d2ccdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+--- !u!114 &-365591531784958903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666682316461908863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87eaa9a4c1f7cc4d9af131a8d2970e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 50
+--- !u!114 &-669498295802289170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666682316461908863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504c145e04d0f7d488c8f1080eee7646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSprites:
+  - {fileID: 21300000, guid: 913d3cec7d52c404a95560d2c289bce2, type: 3}
+  - {fileID: 21300000, guid: 09a0f0e8179e8f74db8403c25cdce37b, type: 3}

@@ -23,7 +23,7 @@ public class PanelsController : MonoBehaviour
 
     private void OnEnable()
     {
-        _targetBase.BaseDestroyed += OpenGameOverPanel;
+        _targetBase.Destroyed += OpenGameOverPanel;
         _pausePanel.SetActive(false);
         _shopPanel.SetActive(false);
         _GameOverPanel.SetActive(false);
@@ -38,7 +38,7 @@ public class PanelsController : MonoBehaviour
 
     private void OnDisable()
     {
-        _targetBase.BaseDestroyed -= OpenGameOverPanel;
+        _targetBase.Destroyed -= OpenGameOverPanel;
         _pauseButton.onClick.RemoveListener(OpenPauseMenu);
         _shopButton.onClick.RemoveListener(OpenShopMenu);
         _exitButton.onClick.RemoveListener(ExitGame);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     [SerializeField] private List<ShopItem> _items;
-    [SerializeField] private Hero _buyer;
+    [SerializeField] private Shoper _buyer;
     [SerializeField] private ShopItemView _itemPattern;
     [SerializeField] private GameObject _itemsContainer;
 

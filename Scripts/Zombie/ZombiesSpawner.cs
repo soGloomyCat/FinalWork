@@ -12,7 +12,7 @@ public class ZombiesSpawner : MonoBehaviour
     [SerializeField] private int _rightmostPosition;
     [SerializeField] private Transform _pool;
     [SerializeField] private Base _target;
-    [SerializeField] private Hero _survivor;
+    [SerializeField] private Shoper _survivor;
     [SerializeField] private TMP_Text _currentLabelWave;
     [SerializeField] private TMP_Text _currentWaveText;
     [SerializeField] private TMP_Text _finishedWavesText;
