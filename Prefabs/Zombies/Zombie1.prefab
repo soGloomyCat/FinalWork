@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2269606475390454049}
   - component: {fileID: 6343950336399344676}
   - component: {fileID: 4737425837969718067}
+  - component: {fileID: -1361444487824756215}
   m_Layer: 0
   m_Name: Zombie1
   m_TagString: Untagged
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b97c39835567b4ca88b3772a9869af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transition: {fileID: 0}
+  _transition: {fileID: 4622421262806058695}
   _damage: 4
   _cooldown: 3
 --- !u!95 &2269606475390454049
@@ -4999,3 +5000,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-1361444487824756215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468615779746402136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4975720934452f34b98ca73425de1335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transition: {fileID: 4622421262806058695}
+  _speed: 0.5

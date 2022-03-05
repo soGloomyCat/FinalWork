@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class InformationChanger : MonoBehaviour
+public class SurvivorsInformationChanger : MonoBehaviour
 {
     [SerializeField] private TMP_Text _killedZombiesText;
     [SerializeField] private TMP_Text _currentBalanceText;

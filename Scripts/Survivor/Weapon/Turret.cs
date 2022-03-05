@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private float _damage;
     [SerializeField] private float _cooldown;
     [SerializeField] private BulletsPool _bulletsPool;
     [SerializeField] private Transform _shootPoint;
@@ -40,7 +39,6 @@ public class Turret : MonoBehaviour
         while (true)
         {
             RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, transform.up);
-            Debug.DrawRay(_shootPoint.position, transform.up * 3f, Color.red);
 
             transform.rotation = Quaternion.Euler(0, 0, _rotateAngle);
             _rotateAngle += _rotateStep;

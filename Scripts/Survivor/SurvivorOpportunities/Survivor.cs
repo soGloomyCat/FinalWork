@@ -4,8 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(HeroMover))]
-public class Hero : MonoBehaviour
+[RequireComponent(typeof(SurvivorMover))]
+public class Survivor : MonoBehaviour
 {
     [SerializeField] private BulletsPool _bulletsPool;
     [SerializeField] private Transform _shootPoint;
@@ -44,7 +44,7 @@ public class Hero : MonoBehaviour
     
     private void Shoot()
     {
-        _rotateAngle = GetComponent<HeroMover>().RotateAngle;
+        _rotateAngle = GetComponent<SurvivorMover>().RotateAngle;
 
         if (_afterShootTime <= 0)
         {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Base))]
 public class BaseAmplifier : MonoBehaviour
 {
-    [SerializeField] private Shoper _survivor;
+    [SerializeField] private SurvivorsShopOpportunities _survivor;
     [SerializeField] private Button _shieldButton;
 
     private Base _targetBase;

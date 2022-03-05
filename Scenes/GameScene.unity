@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 38772604}
   - component: {fileID: 38772603}
   - component: {fileID: 38772605}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.059849463}
+  m_Offset: {x: 0, y: -0.06628638}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -342,7 +342,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 0.52030104}
+  m_Size: {x: 1.28, y: 0.5074272}
   m_EdgeRadius: 0
 --- !u!212 &38772593
 SpriteRenderer:
@@ -6423,7 +6423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &294942597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6436,7 +6436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3963bc193916b7b45a7b11e9b39178f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
   _cooldown: 0.2
   _bulletsPool: {fileID: 643665006}
   _shootPoint: {fileID: 2003797768}
@@ -6541,7 +6540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.94915277, y: 0.91528356}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.900024, y: 18.99997}
+  m_AnchoredPosition: {x: 22.900024, y: 19}
   m_SizeDelta: {x: 39.8, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &336407895
@@ -6882,7 +6881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.94127065, y: 0.86700004}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.700195, y: 9.999939}
+  m_AnchoredPosition: {x: 23.700256, y: 9.999939}
   m_SizeDelta: {x: 37.82, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428536266
@@ -8535,7 +8534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 786270578}
   - component: {fileID: 786270579}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BaseFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9825,7 +9824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.013112326, y: 0.33362436}
   m_AnchorMax: {x: 1, y: 0.88900006}
-  m_AnchoredPosition: {x: -10.000061, y: -15.5}
+  m_AnchoredPosition: {x: -10.000122, y: -15.5}
   m_SizeDelta: {x: -111.7, y: -317.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238906114
@@ -10380,7 +10379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: -2.2899895}
+  m_AnchoredPosition: {x: 0.000015258789, y: -2.2899933}
   m_SizeDelta: {x: -15.1, y: -24.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368608829
@@ -12440,7 +12439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletsPool: {fileID: 643665006}
   _shootPoint: {fileID: 366305996}
-  _bullet: {fileID: -2663100165508490934, guid: c854fe668417f1740afef549b895d56f, type: 3}
+  _bullet: {fileID: 7181745276080836689, guid: c854fe668417f1740afef549b895d56f, type: 3}
   _ray: {fileID: 1919480897}
   _cooldown: 0.8
   _shootSound: {fileID: 1979205005}
@@ -12599,7 +12598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1984852206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12612,7 +12611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3963bc193916b7b45a7b11e9b39178f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
   _cooldown: 0.2
   _bulletsPool: {fileID: 643665006}
   _shootPoint: {fileID: 1538824767}

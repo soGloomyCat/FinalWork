@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class BulletsPool : MonoBehaviour
 {
-    [SerializeField] private Hero _survivor;
+    [SerializeField] private Survivor _survivor;
     [SerializeField] private int _poolCapacity;
 
     private int _shootCount;
     private List<Bullet> _bulletsList;
     private Bullet _tempBullet;
     private Coroutine _coroutine;
-    private Shoper _shoper;
+    private SurvivorsShopOpportunities _shoper;
 
     private void OnEnable()
     {
-        _shoper = _survivor.GetComponent<Shoper>();
+        _shoper = _survivor.GetComponent<SurvivorsShopOpportunities>();
         _shoper.ChangedBulletsType += ChangeBulletsParameters;
     }
 

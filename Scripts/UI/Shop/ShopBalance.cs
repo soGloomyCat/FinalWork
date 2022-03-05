@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShopBalance : MonoBehaviour
 {
-    [SerializeField] private Shoper _buyer;
+    [SerializeField] private SurvivorsShopOpportunities _buyer;
     [SerializeField] private TMP_Text _balance;
 
     private void OnEnable()

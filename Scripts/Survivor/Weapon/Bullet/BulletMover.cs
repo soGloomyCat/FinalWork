@@ -31,6 +31,10 @@ public class BulletMover : MonoBehaviour
         {
             _bullet.Disable();
         }
+        else
+        {
+            _coroutine = StartCoroutine(Flight());
+        }    
     }
 
     private IEnumerator Flight()

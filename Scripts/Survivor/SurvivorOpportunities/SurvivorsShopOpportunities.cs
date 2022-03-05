@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Shoper : MonoBehaviour
+public class SurvivorsShopOpportunities : MonoBehaviour
 {
     [SerializeField] private BulletsPool _bulletsPool;
     [SerializeField] private Turret _leftTurret;
@@ -11,7 +11,7 @@ public class Shoper : MonoBehaviour
 
     private int _wallet;
     private int _killedZombies;
-    private InformationChanger _informationChanger;
+    private SurvivorsInformationChanger _informationChanger;
 
     public int WalletBalance => _wallet;
 
@@ -20,7 +20,7 @@ public class Shoper : MonoBehaviour
 
     private void OnEnable()
     {
-        _informationChanger = GetComponent<InformationChanger>();
+        _informationChanger = GetComponent<SurvivorsInformationChanger>();
     }
 
     public void BuyShieldPoints(int price)
