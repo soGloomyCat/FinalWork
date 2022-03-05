@@ -38,7 +38,7 @@ public class Turret : MonoBehaviour
 
         while (true)
         {
-            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, transform.up);
+            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, transform.up, 4f, 2);
 
             transform.rotation = Quaternion.Euler(0, 0, _rotateAngle);
             _rotateAngle += _rotateStep;
