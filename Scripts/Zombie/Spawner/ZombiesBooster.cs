@@ -8,7 +8,7 @@ public class ZombiesBooster : MonoBehaviour
 
     public float MultiplierHealth { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         MultiplierHealth = 1;
         _stepMultiplierIncrease = 0.2f;

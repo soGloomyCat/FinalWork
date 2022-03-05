@@ -41,7 +41,7 @@ public class ZombiesSpawner : MonoBehaviour
         _zombiesBooster = GetComponent<ZombiesBooster>();
         _currentListCapasity = 1;
         _currentCountZombies = _startCountZombies;
-        
+
         CreateNewWave();
     }
 

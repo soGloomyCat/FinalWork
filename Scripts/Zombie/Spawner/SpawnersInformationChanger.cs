@@ -14,7 +14,7 @@ public class SpawnersInformationChanger : MonoBehaviour
 
     public int WaveIndex { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         _currentLabelWave.alpha = 0;
         WaveIndex = 1;

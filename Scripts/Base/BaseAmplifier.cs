@@ -27,7 +27,7 @@ public class BaseAmplifier : MonoBehaviour
 
     private void Update()
     {
-        _shieldButton.interactable = _survivor.WalletBalance >= _armorPrice;
+        _shieldButton.interactable = _survivor.WalletBalance >= _armorPrice && _targetBase.ShieldPoints < 100;
     }
 
     private void BuyShieldPoints()

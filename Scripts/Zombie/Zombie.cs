@@ -17,7 +17,6 @@ public class Zombie : MonoBehaviour
     private const string Die = "Die";
 
     public int Reward => _reward;
-    public float Health => _health;
     public Base Target { get; private set; }
 
     public event UnityAction<Zombie> Dying;

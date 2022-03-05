@@ -27,7 +27,7 @@ public class MoveState : StateZombie
         if (collision.TryGetComponent<Zombie>(out Zombie zombie))
             ChangeMove(_directions[Random.Range(0, _directions.Count)]);
         else if (collision.TryGetComponent<InvisableWall>(out InvisableWall invisableWall))
-            _currentVector = -_currentVector;
+            _currentVector = _startVector;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
