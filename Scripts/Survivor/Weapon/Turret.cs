@@ -14,20 +14,13 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        _rotateAngle = -5f;
-        IdentifyPosition();
+        _rotateAngle = transform.position.x < 0 ? 5f : -5;
         StartCoroutine(RotateTurret());
     }
 
     public void Activate()
     {
         gameObject.SetActive(true);
-    }
-
-    private void IdentifyPosition()
-    {
-        if (transform.position.x < 0)
-            _rotateAngle = 5f;
     }
 
     private IEnumerator RotateTurret()
