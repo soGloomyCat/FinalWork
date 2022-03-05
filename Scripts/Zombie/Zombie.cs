@@ -13,7 +13,8 @@ public class Zombie : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private ParticleSystem _deadFog;
-
+    private const string Damage = "Damage";
+    private const string Die = "Die";
 
     public int Reward => _reward;
     public float Health => _health;
@@ -30,13 +31,13 @@ public class Zombie : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health -= damage;
-        _animator.SetTrigger("TakeDamage");
+        _animator.SetTrigger(Damage);
 
         if (_health <= 0)
         {
-            _animator.SetTrigger("Die");
+            _animator.SetTrigger(Die);
             _deadFog.Play();
-            Invoke("Hide", 0.3f);
+            Invoke(nameof(Hide), 0.4f);
             Dying?.Invoke(this);
         }
     }

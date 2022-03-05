@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SpawnersInformationChanger))]
+[RequireComponent(typeof(ZombiesBooster))]
 public class ZombiesSpawner : MonoBehaviour
 {
     [SerializeField] private List<Zombie> _zombies;
@@ -13,20 +15,15 @@ public class ZombiesSpawner : MonoBehaviour
     [SerializeField] private Transform _pool;
     [SerializeField] private Base _target;
     [SerializeField] private SurvivorsShopOpportunities _survivor;
-    [SerializeField] private TMP_Text _currentLabelWave;
-    [SerializeField] private TMP_Text _currentWaveText;
-    [SerializeField] private TMP_Text _finishedWavesText;
     [SerializeField] private Button _button;
 
-    private int _stepValueIncrease;
+    private int _currentListCapasity;
+    private int _stepZombiesValueIncrease;
     private int _currentCountZombies;
-    private int _waveIndex;
-    private float _multiplierHealth;
-    private float _stepMultiplierIncrease;
     private List<Zombie> _currentWave;
     private Coroutine _zombiesSpawnCoroutine;
-    private Coroutine _writeLabelCoroutine;
-    private Coroutine _eraseLabelCoroutine;
+    private SpawnersInformationChanger _informator;
+    private ZombiesBooster _zombiesBooster;
 
     private void OnEnable()
     {
@@ -40,18 +37,18 @@ public class ZombiesSpawner : MonoBehaviour
 
     private void Start()
     {
+        _informator = GetComponent<SpawnersInformationChanger>();
+        _zombiesBooster = GetComponent<ZombiesBooster>();
+        _currentListCapasity = 1;
         _currentCountZombies = _startCountZombies;
-        _waveIndex = 1;
-        _multiplierHealth = 1;
-        _stepMultiplierIncrease = 0.2f;
-        _currentLabelWave.alpha = 0;
+        
         CreateNewWave();
     }
 
     private void Update()
     {
         if (CheckAliveZombies())
-            RestartSpawner();
+            Restart();
     }
 
     private void ClearPool()
@@ -77,37 +74,34 @@ public class ZombiesSpawner : MonoBehaviour
     {
         Zombie tempZombie;
         List<Zombie> tempZombiesList;
-        int currentCapaity;
 
         _button.gameObject.SetActive(false);
-        currentCapaity = _waveIndex;
         tempZombiesList = CreateTempList(_zombies);
-        _currentWave = new List<Zombie>(_waveIndex);
-        _currentWaveText.text = $"Current wave\n{_waveIndex}";
-        _finishedWavesText.text = $"Finished waves - {_waveIndex - 1}";
+        _currentWave = new List<Zombie>();
 
-        _writeLabelCoroutine = StartCoroutine(WriteCurrentWave());
+        _informator.ChangeWaveInformation();
+        _informator.ShowCurrentWaveLabel();
 
         if (_pool.childCount > 0)
             ClearPool();
 
-        if (_waveIndex >= _zombies.Count)
-            currentCapaity = _zombies.Count;
-
-        for (int i = 0; i < currentCapaity; i++)
+        for (int i = 0; i < _currentListCapasity; i++)
         {
             tempZombie = tempZombiesList[Random.Range(0, tempZombiesList.Count)];
             tempZombiesList.Remove(tempZombie);
             _currentWave.Add(tempZombie);
         }
 
-        if (_waveIndex % 2 != 0 && _waveIndex != 1)
-            IncreaseMultiplier();
-        
+        if (_informator.WaveIndex % 2 != 0 && _informator.WaveIndex != 1)
+            _zombiesBooster.IncreaseMultiplier();
+
+        if (_currentListCapasity < _zombies.Count)
+            _currentListCapasity++;
+
         _zombiesSpawnCoroutine = StartCoroutine(SpawnZombies());
     }
 
-    private void RestartSpawner()
+    private void Restart()
     {
         _button.gameObject.SetActive(true);
     }
@@ -132,36 +126,6 @@ public class ZombiesSpawner : MonoBehaviour
         return tempZombiesList;
     }
 
-    private void IncreaseMultiplier()
-    {
-        _multiplierHealth += _stepMultiplierIncrease;
-    }
-    
-    private IEnumerator WriteCurrentWave()
-    {
-        _currentLabelWave.text = $"Current wave - {_waveIndex}";
-
-        while (_currentLabelWave.alpha < 1)
-        { 
-            _currentLabelWave.alpha += 0.7f * Time.deltaTime;
-            yield return null;
-        }
-
-        _eraseLabelCoroutine = StartCoroutine(EraseCurrentWave());
-        StopCoroutine(_writeLabelCoroutine);
-    }
-
-    private IEnumerator EraseCurrentWave()
-    {
-        while (_currentLabelWave.alpha > 0)
-        {
-            _currentLabelWave.alpha -= 0.7f * Time.deltaTime;
-            yield return null;
-        }
-
-        StopCoroutine(_eraseLabelCoroutine);
-    }
-
     private IEnumerator SpawnZombies()
     {
         WaitForSeconds timer = new WaitForSeconds(2f);
@@ -175,13 +139,13 @@ public class ZombiesSpawner : MonoBehaviour
             tempZombie.Dying += OnZombieDying;
             tempZombie.InitTarget(_target);
             tempZombie.SetColor();
-            tempZombie.IncreaseHealth(_multiplierHealth);
+            tempZombie.IncreaseHealth(_zombiesBooster.MultiplierHealth);
             yield return timer;
         }
 
-        _waveIndex++;
-        _stepValueIncrease = Random.Range(3, 8);
-        _currentCountZombies += _stepValueIncrease;
+        _informator.IncreaseWaveIndex();
+        _stepZombiesValueIncrease = Random.Range(3, 8);
+        _currentCountZombies += _stepZombiesValueIncrease;
         StopCoroutine(_zombiesSpawnCoroutine);
     }
 }

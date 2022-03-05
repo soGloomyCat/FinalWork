@@ -14,6 +14,8 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
+        _rotateAngle = -5f;
+        IdentifyPosition();
         StartCoroutine(RotateTurret());
     }
 
@@ -26,19 +28,16 @@ public class Turret : MonoBehaviour
     {
         if (transform.position.x < 0)
             _rotateAngle = 5f;
-        else
-            _rotateAngle = -5f;
     }
 
     private IEnumerator RotateTurret()
     {
         WaitForSeconds timer = new WaitForSeconds(.1f);
-        IdentifyPosition();
         _rotateStep = _rotateAngle;
 
         while (true)
         {
-            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, transform.up, 4f, 2);
+            RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, transform.up);
 
             transform.rotation = Quaternion.Euler(0, 0, _rotateAngle);
             _rotateAngle += _rotateStep;
