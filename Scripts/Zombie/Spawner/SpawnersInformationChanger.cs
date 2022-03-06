@@ -9,15 +9,28 @@ public class SpawnersInformationChanger : MonoBehaviour
     [SerializeField] private TMP_Text _currentWaveText;
     [SerializeField] private TMP_Text _finishedWavesText;
 
+    private ZombiesSpawner _spawner;
     private Coroutine _writeLabelCoroutine;
     private Coroutine _eraseLabelCoroutine;
 
     public int WaveIndex { get; private set; }
 
-    private void Awake()
+    private void OnEnable()
     {
+        _spawner = GetComponent<ZombiesSpawner>();
+        _spawner.ChangedInfo += ChangeWaveInformation;
+        _spawner.ShowInfo += ShowCurrentWaveLabel;
+        _spawner.WaveIndexIncreased += IncreaseWaveIndex;
         _currentLabelWave.alpha = 0;
         WaveIndex = 1;
+    }
+
+    private void OnDisable()
+    {
+        _spawner.ChangedInfo -= ChangeWaveInformation;
+        _spawner.ShowInfo -= ShowCurrentWaveLabel;
+        _spawner.WaveIndexIncreased -= IncreaseWaveIndex;
+
     }
 
     public void ChangeWaveInformation()

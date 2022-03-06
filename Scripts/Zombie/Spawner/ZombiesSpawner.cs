@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpawnersInformationChanger))]
@@ -15,32 +16,40 @@ public class ZombiesSpawner : MonoBehaviour
     [SerializeField] private Transform _pool;
     [SerializeField] private Base _target;
     [SerializeField] private SurvivorsShopOpportunities _survivor;
-    [SerializeField] private Button _button;
 
+    private int _currentWaveIndex;
     private int _currentListCapasity;
     private int _stepZombiesValueIncrease;
     private int _currentCountZombies;
     private List<Zombie> _currentWave;
     private Coroutine _zombiesSpawnCoroutine;
-    private SpawnersInformationChanger _informator;
     private ZombiesBooster _zombiesBooster;
+    private SpawnerView _spawnerView;
+
+    public event UnityAction BoostZombies;
+    public event UnityAction ChangedInfo;
+    public event UnityAction ShowInfo;
+    public event UnityAction WaveIndexIncreased;
+    public event UnityAction<int> ZombieKilled;
+    public event UnityAction WaveFinished;
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(CreateNewWave);
+        _spawnerView = GetComponent<SpawnerView>();
+        _spawnerView.ButtonPressed += CreateNewWave;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(CreateNewWave);
+        _spawnerView.ButtonPressed -= CreateNewWave;
     }
 
     private void Start()
     {
-        _informator = GetComponent<SpawnersInformationChanger>();
-        _zombiesBooster = GetComponent<ZombiesBooster>();
+        _currentWaveIndex = 1;
         _currentListCapasity = 1;
         _currentCountZombies = _startCountZombies;
+        _zombiesBooster = GetComponent<ZombiesBooster>();
 
         CreateNewWave();
     }
@@ -48,7 +57,7 @@ public class ZombiesSpawner : MonoBehaviour
     private void Update()
     {
         if (CheckAliveZombies())
-            Restart();
+            RestartWave();
     }
 
     private void ClearPool()
@@ -75,12 +84,11 @@ public class ZombiesSpawner : MonoBehaviour
         Zombie tempZombie;
         List<Zombie> tempZombiesList;
 
-        _button.gameObject.SetActive(false);
         tempZombiesList = CreateTempList(_zombies);
         _currentWave = new List<Zombie>();
 
-        _informator.ChangeWaveInformation();
-        _informator.ShowCurrentWaveLabel();
+        ChangedInfo?.Invoke();
+        ShowInfo?.Invoke();
 
         if (_pool.childCount > 0)
             ClearPool();
@@ -92,24 +100,25 @@ public class ZombiesSpawner : MonoBehaviour
             _currentWave.Add(tempZombie);
         }
 
-        if (_informator.WaveIndex % 2 != 0 && _informator.WaveIndex != 1)
-            _zombiesBooster.IncreaseMultiplier();
+        if (_currentWaveIndex % 2 != 0 && _currentWaveIndex != 1)
+            BoostZombies?.Invoke();
 
         if (_currentListCapasity < _zombies.Count)
             _currentListCapasity++;
 
+        _currentWaveIndex++;
         _zombiesSpawnCoroutine = StartCoroutine(SpawnZombies());
     }
 
-    private void Restart()
+    private void RestartWave()
     {
-        _button.gameObject.SetActive(true);
+        WaveFinished?.Invoke();
     }
 
     private void OnZombieDying(Zombie zombie)
     {
         zombie.Dying -= OnZombieDying;
-        _survivor.AddMoney(zombie.Reward);
+        ZombieKilled?.Invoke(zombie.Reward);
     }
 
     private List<Zombie> CreateTempList(List<Zombie> mainList)
@@ -137,13 +146,11 @@ public class ZombiesSpawner : MonoBehaviour
             spawnPoint = new Vector2(Random.Range(_leftmostPosition, _rightmostPosition), _pool.position.y);
             tempZombie = Instantiate(_currentWave[Random.Range(0, _currentWave.Count)], spawnPoint, Quaternion.identity, _pool).GetComponent<Zombie>();
             tempZombie.Dying += OnZombieDying;
-            tempZombie.InitTarget(_target);
-            tempZombie.SetColor();
-            tempZombie.IncreaseHealth(_zombiesBooster.MultiplierHealth);
+            tempZombie.InizializeParameters(_target, _zombiesBooster.MultiplierHealth);
             yield return timer;
         }
 
-        _informator.IncreaseWaveIndex();
+        WaveIndexIncreased?.Invoke();
         _stepZombiesValueIncrease = Random.Range(3, 8);
         _currentCountZombies += _stepZombiesValueIncrease;
         StopCoroutine(_zombiesSpawnCoroutine);

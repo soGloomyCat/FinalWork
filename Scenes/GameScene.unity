@@ -10783,6 +10783,7 @@ GameObject:
   - component: {fileID: 1484968263}
   - component: {fileID: 1484968265}
   - component: {fileID: 1484968266}
+  - component: {fileID: 1484968267}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -10812,7 +10813,6 @@ MonoBehaviour:
   _pool: {fileID: 1484968264}
   _target: {fileID: 38772602}
   _survivor: {fileID: 1979205007}
-  _button: {fileID: 535738167}
 --- !u!4 &1484968264
 Transform:
   m_ObjectHideFlags: 0
@@ -10854,6 +10854,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9354e73e178846448bda272457fed564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1484968267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484968262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f2be9605b6ccd4b88253ab0e07f714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 535738167}
 --- !u!1 &1515484528
 GameObject:
   m_ObjectHideFlags: 0
@@ -12593,6 +12606,7 @@ MonoBehaviour:
   _bulletsPool: {fileID: 643665006}
   _leftTurret: {fileID: 1984852206}
   _rightTurret: {fileID: 294942597}
+  _spawner: {fileID: 1484968263}
 --- !u!114 &1979205008
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,12 +41,24 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    public void InitTarget(Base target)
+    public void InizializeParameters(Base target, float multiplier)
+    {
+        InitTarget(target);
+        SetColor();
+        IncreaseHealth(multiplier);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void InitTarget(Base target)
     {
         Target = target;
     }
 
-    public void SetColor()
+    private void SetColor()
     {
         Color color;
 
@@ -55,12 +67,7 @@ public class Zombie : MonoBehaviour
         _spriteRenderer.color = color;
     }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void IncreaseHealth(float multiplier)
+    private void IncreaseHealth(float multiplier)
     {
         _health *= multiplier;
     }

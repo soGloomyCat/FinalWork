@@ -8,31 +8,37 @@ public class SurvivorsShopOpportunities : MonoBehaviour
     [SerializeField] private BulletsPool _bulletsPool;
     [SerializeField] private Turret _leftTurret;
     [SerializeField] private Turret _rightTurret;
+    [SerializeField] private ZombiesSpawner _spawner;
 
     private int _killedZombies;
-    private SurvivorsInformationChanger _informationChanger;
 
     public int WalletBalance { get; private set; }
 
     public event UnityAction ChangedBalance;
     public event UnityAction<float> ChangedBulletsType;
+    public event UnityAction<int, int> ChangedResultsInfo;
 
     private void OnEnable()
     {
-        _informationChanger = GetComponent<SurvivorsInformationChanger>();
+        _spawner.ZombieKilled += AddMoney;
+    }
+
+    private void OnDisable()
+    {
+        _spawner.ZombieKilled -= AddMoney;
     }
 
     public void BuyShieldPoints(int price)
     {
         WalletBalance -= price;
-        _informationChanger.ChangeResultsInfo(WalletBalance, _killedZombies);
+        ChangedResultsInfo?.Invoke(WalletBalance, _killedZombies);
     }
 
     public void BuyItem(ShopItem item)
     {
         WalletBalance -= item.Price;
         ChangedBalance?.Invoke();
-        _informationChanger.ChangeResultsInfo(WalletBalance, _killedZombies);
+        ChangedResultsInfo?.Invoke(WalletBalance, _killedZombies);
 
         switch (item.Label)
         {
@@ -63,7 +69,7 @@ public class SurvivorsShopOpportunities : MonoBehaviour
     {
         WalletBalance += reward;
         _killedZombies++;
-        _informationChanger.ChangeResultsInfo(WalletBalance, _killedZombies);
+        ChangedResultsInfo?.Invoke(WalletBalance, _killedZombies);
         ChangedBalance?.Invoke();
     }
 }
