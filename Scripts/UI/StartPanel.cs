@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using IJunior.TypedScenes;
 
 public class StartPanel : MonoBehaviour
 {
@@ -28,7 +27,6 @@ public class StartPanel : MonoBehaviour
     {
         _loadPanel.SetActive(true);
         _startPanel.SetActive(false);
-        GameScene.Load();
     }
 
     private void ExitGame()

@@ -11,6 +11,8 @@ public class SurvivorsShopOpportunities : MonoBehaviour
     [SerializeField] private ZombiesSpawner _spawner;
 
     private int _killedZombies;
+    private bool _isAvailableBullets;
+    private bool _isAvailableDamage;
 
     public int WalletBalance { get; private set; }
 
@@ -20,6 +22,8 @@ public class SurvivorsShopOpportunities : MonoBehaviour
 
     private void OnEnable()
     {
+        _isAvailableBullets = false;
+        _isAvailableDamage = false;
         _spawner.ZombieKilled += AddMoney;
     }
 
@@ -44,12 +48,14 @@ public class SurvivorsShopOpportunities : MonoBehaviour
         {
             case "Double bullets":
                 _bulletsPool.IncreaseShootCount();
+                _isAvailableBullets = true;
                 break;
             case "Triple bullet":
                 _bulletsPool.IncreaseShootCount();
                 break;
             case "Double damage":
                 ChangedBulletsType?.Invoke(2f);
+                _isAvailableDamage = true;
                 break;
             case "Triple damage":
                 ChangedBulletsType?.Invoke(1.5f);
@@ -63,6 +69,35 @@ public class SurvivorsShopOpportunities : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public bool CheckAvailabelItem(string name)
+    {
+        switch (name)
+        {
+            case "Double bullets":
+                return true;
+            case "Triple bullet":
+                if (_isAvailableBullets)
+                    return true;
+
+                return false;
+            case "Double damage":
+                return true;
+            case "Triple damage":
+                if(_isAvailableDamage)
+                    return true;
+
+                return false;
+            case "Left turret":
+                return true;
+            case "Right turret":
+                return true;
+            default:
+                break;
+        }
+
+        return false;
     }
 
     public void AddMoney(int reward)

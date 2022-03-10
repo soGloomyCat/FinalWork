@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using IJunior.TypedScenes;
+using UnityEngine.SceneManagement;
 
 public class PanelsController : MonoBehaviour
 {
@@ -10,6 +10,7 @@ public class PanelsController : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private GameObject _GameOverPanel;
+    [SerializeField] private GameObject _restartPanel;
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _exitButton;
@@ -27,6 +28,7 @@ public class PanelsController : MonoBehaviour
         _pausePanel.SetActive(false);
         _shopPanel.SetActive(false);
         _GameOverPanel.SetActive(false);
+        _restartPanel.SetActive(false);
         _pauseButton.onClick.AddListener(OpenPauseMenu);
         _shopButton.onClick.AddListener(OpenShopMenu);
         _exitButton.onClick.AddListener(ExitGame);
@@ -87,11 +89,18 @@ public class PanelsController : MonoBehaviour
     private void RestartGame()
     {
         Time.timeScale = 1;
-        GameScene.Load();
+        _restartPanel.SetActive(true);
+        Invoke(nameof(ReloadScene), 1.5f);
     }
 
     private void ExitGame()
     {
         Application.Quit();
+    }
+
+    private void ReloadScene()
+    {
+        _GameOverPanel.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 }

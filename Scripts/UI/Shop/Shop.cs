@@ -31,7 +31,7 @@ public class Shop : MonoBehaviour
 
     private void TrySellItem(ShopItem item, ShopItemView view)
     {
-        if (item.Price <= _buyer.WalletBalance)
+        if (item.Price <= _buyer.WalletBalance && _buyer.CheckAvailabelItem(item.Label))
         { 
             _buyer.BuyItem(item);
             item.Buy();

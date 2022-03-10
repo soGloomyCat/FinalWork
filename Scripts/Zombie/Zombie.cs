@@ -10,7 +10,6 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float _health;
     [SerializeField] private int _reward;
 
-    private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private ParticleSystem _deadFog;
     private const string Damage = "Damage";
@@ -21,10 +20,15 @@ public class Zombie : MonoBehaviour
 
     public event UnityAction<Zombie> Dying;
 
-    private void Start()
+    private void OnEnable()
     {
         _animator = GetComponent<Animator>();
         _deadFog = GetComponent<ParticleSystem>();
+    }
+
+    private void OnDisable()
+    {
+        Target.Destroyed -= Deactivated;
     }
 
     public void TakeDamage(float damage)
@@ -44,7 +48,6 @@ public class Zombie : MonoBehaviour
     public void InizializeParameters(Base target, float multiplier)
     {
         InitTarget(target);
-        SetColor();
         IncreaseHealth(multiplier);
     }
 
@@ -56,19 +59,16 @@ public class Zombie : MonoBehaviour
     private void InitTarget(Base target)
     {
         Target = target;
-    }
-
-    private void SetColor()
-    {
-        Color color;
-
-        color = new Color(Random.Range(0.65f, 1.0f), Random.Range(0.65f, 1.0f), Random.Range(0.65f, 1.0f));
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.color = color;
+        Target.Destroyed += Deactivated;
     }
 
     private void IncreaseHealth(float multiplier)
     {
         _health *= multiplier;
+    }
+
+    private void Deactivated()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-
-public class LoadPanel : MonoBehaviour
+public class LoadingScreen : MonoBehaviour
 {
     [SerializeField] private Image _icon;
 
@@ -19,18 +18,12 @@ public class LoadPanel : MonoBehaviour
 
     private IEnumerator FillIcon()
     {
-        AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(1);
-
-        asyncLoader.allowSceneActivation = false;
-
-        while (_icon.fillAmount != 1f && !asyncLoader.isDone)
-        { 
-            _icon.fillAmount += asyncLoader.progress * Time.deltaTime;
+        while (_icon.fillAmount != 1f)
+        {
+            _icon.fillAmount += Time.deltaTime;
             yield return null;
         }
 
-        gameObject.SetActive(false);
-        asyncLoader.allowSceneActivation = true;
         StopCoroutine(_coroutine);
     }
 }

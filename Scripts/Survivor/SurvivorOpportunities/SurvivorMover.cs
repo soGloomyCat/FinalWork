@@ -15,7 +15,7 @@ public class SurvivorMover : MonoBehaviour
         {
             _mouseCoordinates = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             _rotateAngle = Mathf.Atan2(_mouseCoordinates.x, _mouseCoordinates.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, -Mathf.Clamp(_rotateAngle, -60, 60));
+            transform.rotation = Quaternion.Euler(0, 0, -Mathf.Clamp(_rotateAngle, -65, 65));
         }
     }
 }
